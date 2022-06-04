@@ -1,13 +1,32 @@
-import { FC } from 'react';
-
+import { FC, useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
 import DeveloperCard from '../../components/developer-card/developer-card.component';
+import { getDevelopers } from '../../store/action';
+import { Store } from '../../store/types';
 
-const DevelopersGrid: FC = () => {
-  return (
-    <div>
-      <DeveloperCard />
-    </div>
-  );
+import './devlopers-grid.page.css';
+
+type props = {
+  getDevelopers: () => void;
 };
 
-export default DevelopersGrid;
+const DevelopersGrid: FC<props> = ({ getDevelopers }) => {
+  const data = useSelector((store: Store) => store.resources);
+
+  //   console.log(data);
+  useEffect(() => {
+    const fetchRequest = async () => {
+      await getDevelopers();
+    };
+
+    fetchRequest();
+  }, []);
+
+  const users = data.developers.map((user: any, index: number) => (
+    <DeveloperCard developer={user._source} key={index} />
+  ));
+
+  return <div className='developer-grid'>{users}</div>;
+};
+
+export default connect(null, { getDevelopers })(DevelopersGrid);

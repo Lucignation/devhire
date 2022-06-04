@@ -5,9 +5,19 @@ import unFaved from '../../assets/img/unFaved.svg';
 import faved from '../../assets/img/faved.svg';
 
 import './developer-card.component.css';
+import { IDeveloper } from '../../common/interfaces/developers.interface';
 
-const DeveloperCard: FC = () => {
+type props = {
+  developer: IDeveloper;
+};
+
+const DeveloperCard: FC<props> = ({ developer }) => {
   const [isFav, setIsFav] = useState<boolean>(false);
+
+  const { display_name, currency_name, avatar, service_photo, starting_from } =
+    developer;
+
+  console.log(developer);
 
   const handleFav = () => {
     setIsFav(!isFav);
@@ -25,22 +35,16 @@ const DeveloperCard: FC = () => {
             <img src={unFaved} alt='fav icon' />
           )}
         </div>
-        <img
-          src='https://dl6lnggp44pnu.cloudfront.net/service-multimedia/330000626-photo-1118-mini'
-          alt='cover page'
-        />
+        <img src={service_photo} alt='cover page' />
       </div>
       <div className='card-mid-image'>
-        <img
-          src='https://d17meyd56oy0jr.cloudfront.net/seller-logo/330000626'
-          alt='avatar'
-        />
+        <img src={avatar} alt='avatar' />
       </div>
 
       <div className='card-lower'>
         <div className='card-lower-left'>
-          <h4 className='card-dev-name'>Donnienos</h4>
-          <p className='card-dev-price'>₦30,000</p>
+          <h4 className='card-dev-name'>{display_name}</h4>
+          <p className='card-dev-price'>₦{starting_from}</p>
         </div>
         <div className='card-lower-right'>Hire</div>
       </div>
