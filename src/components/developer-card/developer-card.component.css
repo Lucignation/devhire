@@ -1,0 +1,88 @@
+.card {
+  /* height: 224px; */
+  width: 238px;
+  left: 345px;
+  top: 220px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.card-top {
+  position: relative;
+}
+
+.fav-icon {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  left: 190px;
+  top: 14px;
+  border-radius: 10px;
+  background: #bbbbbb;
+  border-radius: 10px;
+}
+
+.fav-icon img {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.card-top > img {
+  /* width: 100%; */
+  border-radius: 10px;
+  height: 139px;
+  width: 228px;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.card-mid-image {
+  position: relative;
+  height: 44px;
+  width: 44px;
+  margin-left: 13px;
+  margin-top: -28px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #fff;
+}
+
+.card-lower {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-left: 12px;
+  padding-right: 13px;
+}
+
+.card-lower-right {
+  text-align: right;
+  margin-top: 15px;
+  font-family: Public Sans;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  color: #1d9bf0;
+}
+
+.card-dev-name {
+  font-family: Public Sans;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: -8%;
+}
+
+.card-dev-price {
+  font-family: Public Sans;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.49);
+}

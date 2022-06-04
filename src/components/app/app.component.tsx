@@ -7,7 +7,8 @@ import Favorite from '../../pages/favorite/favorite.page';
 import Sidebar from '../sidebar/sidebar.component';
 
 //import CSS styles
-import './app.component.css';
+import './app.component.css'; //modular styles
+import '../../common/styles'; //general styles
 
 const App: FC = () => {
   return (

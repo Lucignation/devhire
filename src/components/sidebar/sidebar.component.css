@@ -1,6 +1,70 @@
 header {
-  border-right: 1px solid #4e4e4e;
+  border-right: 1px solid #d9dbe9;
   padding-top: 30px;
-  padding-left: 54px;
+  /* padding-left: 54px; */
   padding-right: 83px;
+  margin-left: 0 !important;
+  /* background-color: pink; */
+}
+
+.logo {
+  padding-left: 54px;
+}
+
+.nav-link-lists {
+  /* margin-left: 0%; */
+  /* background-color: red; */
+}
+
+.nav-link {
+}
+
+.nav-link-item {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 1px;
+  /* text-align: left; */
+
+  margin-top: 30%;
+  /* margin-left: -37%; */
+  text-decoration: none;
+  /* background-color: green; */
+  list-style: none;
+  margin-left: -50%;
+
+  padding-left: 54px;
+  display: grid;
+  grid-template-columns: 5% 15% 55%;
+  grid-gap: 15%;
+}
+
+.active-nav-link-item .nav-icon {
+  background-color: #1d9bf0;
+  border-radius: 5px;
+}
+
+.active-nav-link-item .nav-icon img {
+  margin-left: 25%;
+}
+
+.nav-link-item a {
+  list-style: none;
+  text-decoration: none;
+  color: #0000006e;
+}
+
+.active-nav-link-item a {
+  color: #14142b;
+  text-decoration: none;
+}
+
+.stripe {
+  border-left: 4px solid #1d9bf0;
+  height: 30px;
+  width: 7px;
+  margin-left: -10px;
+  margin-top: 1px;
+  border-radius: 5px;
 }
