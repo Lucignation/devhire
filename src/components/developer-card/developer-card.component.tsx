@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 //import assets
 import unFaved from '../../assets/img/unFaved.svg';
@@ -7,11 +7,23 @@ import faved from '../../assets/img/faved.svg';
 import './developer-card.component.css';
 
 const DeveloperCard: FC = () => {
+  const [isFav, setIsFav] = useState<boolean>(false);
+
+  const handleFav = () => {
+    setIsFav(!isFav);
+  };
   return (
     <div className='card'>
       <div className='card-top'>
-        <div className='fav-icon'>
-          <img src={unFaved} alt='fav icon' />
+        <div
+          className={isFav ? 'faved-icon fav-icon' : 'unfaved-icon fav-icon'}
+          onClick={() => handleFav()}
+        >
+          {isFav ? (
+            <img src={faved} alt='fav icon' />
+          ) : (
+            <img src={unFaved} alt='fav icon' />
+          )}
         </div>
         <img
           src='https://dl6lnggp44pnu.cloudfront.net/service-multimedia/330000626-photo-1118-mini'

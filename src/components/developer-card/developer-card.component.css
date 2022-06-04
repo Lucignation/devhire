@@ -18,8 +18,16 @@
   left: 190px;
   top: 14px;
   border-radius: 10px;
-  background: #bbbbbb;
+
   border-radius: 10px;
+}
+
+.faved-icon {
+  background: #fff;
+}
+
+.unfaved-icon {
+  background: #bbbbbb;
 }
 
 .fav-icon img {
