@@ -72,7 +72,9 @@ export const getCurrencies =
         });
 
         resolve(res.data.data.currencies);
-      } catch (error) {}
+      } catch (error) {
+        reject(error);
+      }
     });
   };
 

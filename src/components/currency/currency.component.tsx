@@ -9,7 +9,7 @@ import { Store } from '../../store/types';
 import './currency.component.css';
 
 type props = {
-  getCurrencies: () => void;
+  getCurrencies: () => Array<ICurrency> | any;
   setCurrency: (currency: ICurrency) => void;
 };
 
@@ -17,17 +17,27 @@ const Currrency: FC<props> = ({ getCurrencies, setCurrency }) => {
   const data = useSelector((store: Store) => store.resources);
 
   const [curr, setCurr] = useState<string>('');
-  const [cur, setCur] = useState<ICurrency[]>();
+  const [cur, setCur] = useState<ICurrency[]>([]);
 
   const { currencies, currency } = data;
 
   useEffect(() => {
     const fetch = async () => {
-      await getCurrencies();
+      const res = await getCurrencies();
+      setCur(res[0]);
+      await setCurrency(res[0]);
     };
 
     fetch();
   }, []);
+
+  useEffect(() => {
+    const currencyCode =
+      currencies &&
+      currencies.filter((currr: ICurrency) => currr.short === curr);
+    setCur(currencyCode);
+    setCurrency(currencyCode);
+  }, [curr]);
 
   const options = currencies.map((currency: ICurrency) => {
     return (
@@ -37,17 +47,10 @@ const Currrency: FC<props> = ({ getCurrencies, setCurrency }) => {
     );
   });
 
-  const currencyCode =
-    currencies && currencies.filter((cur: ICurrency) => cur.short === curr);
+  //   console.log(currencyCode);
 
-  console.log(currencyCode);
-
-  const handleChange = async (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    code: ICurrency[]
-  ) => {
-    setCurr(e.target.value);
-    console.log(code);
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurr(() => e.target.value);
     // await setCurrency(currencyCode);
   };
 
@@ -58,14 +61,10 @@ const Currrency: FC<props> = ({ getCurrencies, setCurrency }) => {
   return (
     <div className='currency-component'>
       <img
-        src={
-          currencyCode.length > 0
-            ? currencyCode[0].flag_url
-            : currencies[0]?.flag_url
-        }
+        src={cur.length > 0 ? cur[0].flag_url : currencies[0]?.flag_url}
         alt={currencies[0]?.name}
       />
-      <select onChange={(e) => handleChange(e, currencyCode)}>{options}</select>
+      <select onChange={handleChange}>{options}</select>
     </div>
   );
 };
