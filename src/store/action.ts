@@ -1,17 +1,22 @@
 import axios from 'axios';
 import { Dispatch, Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { ICurrency } from '../common/interfaces/currency.interface';
 import { IDeveloper } from '../common/interfaces/developers.interface';
 import { Store } from './types';
 
 export const GET_DEVELOPERS = 'GET_DEVELOPERS';
 export const FAV_DEVELOPER = 'FAV_DEVELOPER';
 export const REMOVE_FAV_DEVELOPER = 'REMOVE_FAV_DEVELOPER';
+export const GET_CURRENCIES = 'GET_CURRENCIES';
+export const SET_CURRENCY = 'SET_CURRENCY';
 
 export type ActionTypes =
   | { type: typeof GET_DEVELOPERS; payload: IDeveloper[] }
   | { type: typeof FAV_DEVELOPER; payload: IDeveloper }
-  | { type: typeof REMOVE_FAV_DEVELOPER; payload: number };
+  | { type: typeof REMOVE_FAV_DEVELOPER; payload: number }
+  | { type: typeof GET_CURRENCIES; payload: ICurrency[] }
+  | { type: typeof SET_CURRENCY; payload: ICurrency };
 
 //get request to users
 export const getDevelopers =
@@ -49,4 +54,31 @@ export const FavDev =
     return new Promise((resolve, reject) => {
       dispatch({ type: FAV_DEVELOPER, payload: dev });
     });
+  };
+
+//get all currencies
+export const getCurrencies =
+  (): ThunkAction<void, Store, unknown, Action<ICurrency[]>> =>
+  async (dispatch: Dispatch) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const url = 'https://api.terawork.com/resources';
+
+        const res = await axios.get(url);
+
+        dispatch({
+          type: GET_CURRENCIES,
+          payload: res.data.data.currencies,
+        });
+
+        resolve(res.data.data.currencies);
+      } catch (error) {}
+    });
+  };
+
+//get all currencies
+export const setCurrency =
+  (currency: ICurrency): ThunkAction<void, Store, unknown, Action<ICurrency>> =>
+  async (dispatch: Dispatch) => {
+    dispatch({ type: SET_CURRENCY, payload: currency });
   };

@@ -5,6 +5,8 @@ import {
   FAV_DEVELOPER,
   ActionTypes,
   REMOVE_FAV_DEVELOPER,
+  GET_CURRENCIES,
+  SET_CURRENCY,
 } from './action';
 import { Store } from './types';
 
@@ -83,6 +85,18 @@ const initialState: Store = {
   },
   developers: [],
   favorites: [],
+  currencies: [],
+  currency: {
+    id: 0,
+    name: '',
+    short: '',
+    locale: '',
+    symbol: '',
+    divider: '',
+    category: '',
+    regional_default: 0,
+    flag_url: '',
+  },
 };
 
 function resourcesReducer(state: Store = initialState, action: ActionTypes) {
@@ -105,6 +119,18 @@ function resourcesReducer(state: Store = initialState, action: ActionTypes) {
         favorites: state.favorites.filter(
           (dev) => dev.cust_id !== action.payload
         ),
+      };
+
+    case GET_CURRENCIES:
+      return {
+        ...state,
+        currencies: action.payload,
+      };
+
+    case SET_CURRENCY:
+      return {
+        ...state,
+        currency: action.payload,
       };
     default:
       return state;

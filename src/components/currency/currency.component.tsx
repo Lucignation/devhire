@@ -1,14 +1,42 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+
+import { connect, useSelector } from 'react-redux';
+import { ICurrency } from '../../common/interfaces/currency.interface';
+import { getCurrencies, setCurrency } from '../../store/action';
+import { Store } from '../../store/types';
 
 //import CSS styles
 import './currency.component.css';
 
-const Currrency: FC = () => {
+type props = {
+  getCurrencies: () => void;
+  setCurrency: (currency: ICurrency) => void;
+};
+
+const Currrency: FC<props> = ({ getCurrencies }) => {
+  const data = useSelector((store: Store) => store.resources);
+
+  const { currencies, currency } = data;
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await getCurrencies();
+      //   setCurrencies(res[0])
+    };
+
+    fetch();
+  }, [currency]);
+
+  setCurrency(currencies[0]);
+
+  console.log(currency);
+
+  console.log(currencies);
+
   return (
     <div className='currency-component'>
       <select>
         <option value='NGN'>
-          <div>FLAG</div>
+          <div></div>
           Naira
         </option>
 
@@ -21,4 +49,4 @@ const Currrency: FC = () => {
   );
 };
 
-export default Currrency;
+export default connect(null, { getCurrencies, setCurrency })(Currrency);

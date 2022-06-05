@@ -1,3 +1,4 @@
+import { ICurrency } from '../common/interfaces/currency.interface';
 import { IDeveloper } from '../common/interfaces/developers.interface';
 
 export type Store = {
@@ -5,4 +6,6 @@ export type Store = {
   developer: IDeveloper;
   developers: IDeveloper[];
   favorites: IDeveloper[];
+  currencies: ICurrency[];
+  currency: ICurrency;
 };
