@@ -7,3 +7,11 @@
 .home h1 {
   padding-bottom: 72px;
 }
+
+@media (max-width: 912px) {
+  .home {
+    height: auto;
+    padding-left: 5px;
+    padding-top: 94px;
+  }
+}

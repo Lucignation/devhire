@@ -7,3 +7,17 @@
   grid-template-columns: 20% 70%;
   margin-bottom: 175px;
 }
+
+@media (max-width: 912px) {
+  .app_division {
+    grid-template-columns: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 540px) {
+  .app_division {
+    grid-template-columns: 100%;
+    margin-bottom: 15px;
+  }
+}

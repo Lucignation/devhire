@@ -1,19 +1,12 @@
 header {
   border-right: 1px solid #d9dbe9;
   padding-top: 30px;
-  /* padding-left: 54px; */
   padding-right: 83px;
   margin-left: 0 !important;
-  /* background-color: pink; */
 }
 
 .logo {
   padding-left: 54px;
-}
-
-.nav-link-lists {
-  /* margin-left: 0%; */
-  /* background-color: red; */
 }
 
 .nav-link {
@@ -25,12 +18,9 @@ header {
   font-weight: 700;
   line-height: 32px;
   letter-spacing: 1px;
-  /* text-align: left; */
 
   margin-top: 30%;
-  /* margin-left: -37%; */
   text-decoration: none;
-  /* background-color: green; */
   list-style: none;
   margin-left: -50%;
 
@@ -67,4 +57,30 @@ header {
   margin-left: -10px;
   margin-top: 1px;
   border-radius: 5px;
+}
+
+@media (max-width: 912px) {
+  .nav-link-lists {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .nav-link-item {
+    /* border: 1px solid red; */
+    font-size: 24px;
+    margin-left: 3%;
+  }
+}
+
+@media (max-width: 540px) {
+  .nav-link-lists {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .nav-link-item {
+    /* border: 1px solid red; */
+    font-size: 18px;
+    margin-left: 3%;
+  }
 }

@@ -6,9 +6,12 @@ import unFaved from '../../assets/img/unFaved.svg';
 import faved from '../../assets/img/faved.svg';
 
 import './developer-card.component.css';
+
 import { IDeveloper } from '../../common/interfaces/developers.interface';
 import { Store } from '../../store/types';
 import { removeFav, FavDev } from '../../store/action';
+
+import Price from '../price/price.component';
 
 type props = {
   developer: IDeveloper;
@@ -46,10 +49,18 @@ const DeveloperCard: FC<props> = ({ developer, removeFav, FavDev }) => {
     <div className='card'>
       <div className='card-top'>
         <div
-          className={isFav ? 'faved-icon fav-icon' : 'unfaved-icon fav-icon'}
+          className={
+            favorites.some(
+              (dev: IDeveloper) => dev.cust_id === developer.cust_id
+            )
+              ? 'faved-icon fav-icon'
+              : 'unfaved-icon fav-icon'
+          }
           onClick={() => handleFav(developer)}
         >
-          {isFav ? (
+          {favorites.some(
+            (dev: IDeveloper) => dev.cust_id === developer.cust_id
+          ) ? (
             <img src={faved} alt='fav icon' />
           ) : (
             <img src={unFaved} alt='fav icon' />
@@ -66,7 +77,7 @@ const DeveloperCard: FC<props> = ({ developer, removeFav, FavDev }) => {
       <div className='card-lower'>
         <div className='card-lower-left'>
           <h4 className='card-dev-name'>{display_name}</h4>
-          <p className='card-dev-price'>₦{starting_from}</p>
+          <Price priceTag={starting_from} />
         </div>
         <div className='card-lower-right'>Hire</div>
       </div>

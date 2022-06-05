@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axios/index';
 import { Dispatch, Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { ICurrency } from '../common/interfaces/currency.interface';
@@ -26,7 +26,7 @@ export const getDevelopers =
       try {
         // dispatch(setLoading());
         const url =
-          'https://api.terawork.com/service-categories/sellers-services/computer-software-development';
+          'service-categories/sellers-services/computer-software-development';
         const users = await axios.get(url);
         const allusers = await users.data.data.service_search_results.hits;
         // });
@@ -62,7 +62,7 @@ export const getCurrencies =
   async (dispatch: Dispatch) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const url = 'https://api.terawork.com/resources';
+        const url = 'resources';
 
         const res = await axios.get(url);
 
@@ -76,9 +76,10 @@ export const getCurrencies =
     });
   };
 
-//get all currencies
+//get a currency
 export const setCurrency =
   (currency: ICurrency): ThunkAction<void, Store, unknown, Action<ICurrency>> =>
   async (dispatch: Dispatch) => {
+    console.log(currency);
     dispatch({ type: SET_CURRENCY, payload: currency });
   };

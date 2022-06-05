@@ -13,38 +13,59 @@ type props = {
   setCurrency: (currency: ICurrency) => void;
 };
 
-const Currrency: FC<props> = ({ getCurrencies }) => {
+const Currrency: FC<props> = ({ getCurrencies, setCurrency }) => {
   const data = useSelector((store: Store) => store.resources);
 
+  const [curr, setCurr] = useState<string>('');
+  const [cur, setCur] = useState<ICurrency[]>();
+
   const { currencies, currency } = data;
+
   useEffect(() => {
     const fetch = async () => {
-      const res = await getCurrencies();
-      //   setCurrencies(res[0])
+      await getCurrencies();
     };
 
     fetch();
-  }, [currency]);
+  }, []);
 
-  setCurrency(currencies[0]);
+  const options = currencies.map((currency: ICurrency) => {
+    return (
+      <option key={currency.id} value={currency.short}>
+        {currency.name}
+      </option>
+    );
+  });
 
-  console.log(currency);
+  const currencyCode =
+    currencies && currencies.filter((cur: ICurrency) => cur.short === curr);
 
-  console.log(currencies);
+  console.log(currencyCode);
+
+  const handleChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    code: ICurrency[]
+  ) => {
+    setCurr(e.target.value);
+    console.log(code);
+    // await setCurrency(currencyCode);
+  };
+
+  console.log(curr);
+
+  console.log(cur);
 
   return (
     <div className='currency-component'>
-      <select>
-        <option value='NGN'>
-          <div></div>
-          Naira
-        </option>
-
-        <option value='USD'>
-          <div>FLAG</div>
-          Dollars
-        </option>
-      </select>
+      <img
+        src={
+          currencyCode.length > 0
+            ? currencyCode[0].flag_url
+            : currencies[0]?.flag_url
+        }
+        alt={currencies[0]?.name}
+      />
+      <select onChange={(e) => handleChange(e, currencyCode)}>{options}</select>
     </div>
   );
 };
