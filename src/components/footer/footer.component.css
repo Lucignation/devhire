@@ -1,0 +1,12 @@
+footer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-left: 50px;
+  padding-right: 94px;
+  padding-bottom: 1%;
+  /* margin-bottom: 60% !important ; */
+}
+
+.currency {
+  text-align: right;
+}

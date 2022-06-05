@@ -6,10 +6,12 @@ import { Store } from './types';
 
 export const GET_DEVELOPERS = 'GET_DEVELOPERS';
 export const FAV_DEVELOPER = 'FAV_DEVELOPER';
+export const REMOVE_FAV_DEVELOPER = 'REMOVE_FAV_DEVELOPER';
 
 export type ActionTypes =
   | { type: typeof GET_DEVELOPERS; payload: IDeveloper[] }
-  | { type: typeof FAV_DEVELOPER; payload: IDeveloper };
+  | { type: typeof FAV_DEVELOPER; payload: IDeveloper }
+  | { type: typeof REMOVE_FAV_DEVELOPER; payload: number };
 
 //get request to users
 export const getDevelopers =
@@ -20,21 +22,31 @@ export const getDevelopers =
         // dispatch(setLoading());
         const url =
           'https://api.terawork.com/service-categories/sellers-services/computer-software-development';
-        // const vehicle = await axiosInstance.get(url);
         const users = await axios.get(url);
         const allusers = await users.data.data.service_search_results.hits;
-
-        // allusers.map((user: any) => {
-        //   //   console.log(user._source);
-        //   dispatch({ type: GET_DEVELOPERS, payload: user._source });
         // });
         dispatch({ type: GET_DEVELOPERS, payload: allusers });
 
         resolve(allusers);
-        // dispatch({ type: GET_DEVELOPERS, payload: vehicle.data.results });
-        // resolve(vehicle.data.results);
       } catch (error) {
         reject(error);
       }
+    });
+  };
+
+//remove developer fav from the favorite list
+export const removeFav =
+  (developer: IDeveloper): ThunkAction<void, Store, unknown, Action<void>> =>
+  (dispatch: Dispatch) => {
+    console.log(developer);
+    dispatch({ type: REMOVE_FAV_DEVELOPER, payload: developer.cust_id });
+  };
+
+//fav a dev
+export const FavDev =
+  (dev: IDeveloper): ThunkAction<void, Store, unknown, Action<void>> =>
+  async (dispatch: Dispatch) => {
+    return new Promise((resolve, reject) => {
+      dispatch({ type: FAV_DEVELOPER, payload: dev });
     });
   };

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useSelector, connect } from 'react-redux';
 
 //import assets
 import unFaved from '../../assets/img/unFaved.svg';
@@ -6,28 +7,47 @@ import faved from '../../assets/img/faved.svg';
 
 import './developer-card.component.css';
 import { IDeveloper } from '../../common/interfaces/developers.interface';
+import { Store } from '../../store/types';
+import { removeFav, FavDev } from '../../store/action';
 
 type props = {
   developer: IDeveloper;
+  removeFav: (dev: IDeveloper) => void;
+  FavDev: (dev: IDeveloper) => void;
 };
 
-const DeveloperCard: FC<props> = ({ developer }) => {
+const DeveloperCard: FC<props> = ({ developer, removeFav, FavDev }) => {
   const [isFav, setIsFav] = useState<boolean>(false);
 
   const { display_name, currency_name, avatar, service_photo, starting_from } =
     developer;
 
-  console.log(developer);
+  const data = useSelector((store: Store) => store.resources);
 
-  const handleFav = () => {
+  const { favorites } = data;
+
+  //   console.log(favorites);
+
+  //fav a developer
+  const handleFav = (developer: IDeveloper) => {
     setIsFav(!isFav);
+    if (
+      favorites.some((dev: IDeveloper) => dev.cust_id === developer.cust_id)
+    ) {
+      removeFav(developer);
+      //   showToast(`${developer.display_name} is removed`);
+    } else {
+      FavDev(developer);
+      //   showToast(`${developer.display_name} is faved`);
+    }
   };
+
   return (
     <div className='card'>
       <div className='card-top'>
         <div
           className={isFav ? 'faved-icon fav-icon' : 'unfaved-icon fav-icon'}
-          onClick={() => handleFav()}
+          onClick={() => handleFav(developer)}
         >
           {isFav ? (
             <img src={faved} alt='fav icon' />
@@ -35,7 +55,9 @@ const DeveloperCard: FC<props> = ({ developer }) => {
             <img src={unFaved} alt='fav icon' />
           )}
         </div>
-        <img src={service_photo} alt='cover page' />
+        <div className='card-mid-cover'>
+          <img src={service_photo} alt='cover page' className='cover' />
+        </div>
       </div>
       <div className='card-mid-image'>
         <img src={avatar} alt='avatar' />
@@ -52,4 +74,4 @@ const DeveloperCard: FC<props> = ({ developer }) => {
   );
 };
 
-export default DeveloperCard;
+export default connect(null, { removeFav, FavDev })(DeveloperCard);

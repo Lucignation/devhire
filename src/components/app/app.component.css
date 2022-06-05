@@ -5,4 +5,5 @@
 .app_division {
   display: grid;
   grid-template-columns: 20% 70%;
+  margin-bottom: 175px;
 }

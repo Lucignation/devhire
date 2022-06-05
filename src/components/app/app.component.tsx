@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../../pages/home/home.page';
 import Favorite from '../../pages/favorite/favorite.page';
 import Sidebar from '../sidebar/sidebar.component';
+import Footer from '../footer/footer.component';
 
 //import CSS styles
 import './app.component.css'; //modular styles
@@ -21,6 +22,7 @@ const App: FC = () => {
             <Route path='/favorites' element={<Favorite />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </div>
   );

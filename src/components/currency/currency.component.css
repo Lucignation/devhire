@@ -1,0 +1,6 @@
+.currency-component select {
+  border-top: 1px solid #8692a6;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: none;
+}

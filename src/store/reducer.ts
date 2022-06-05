@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { GET_DEVELOPERS, FAV_DEVELOPER, ActionTypes } from './action';
+import {
+  GET_DEVELOPERS,
+  FAV_DEVELOPER,
+  ActionTypes,
+  REMOVE_FAV_DEVELOPER,
+} from './action';
 import { Store } from './types';
 
 const initialState: Store = {
@@ -77,6 +82,7 @@ const initialState: Store = {
     community: '',
   },
   developers: [],
+  favorites: [],
 };
 
 function resourcesReducer(state: Store = initialState, action: ActionTypes) {
@@ -85,6 +91,20 @@ function resourcesReducer(state: Store = initialState, action: ActionTypes) {
       return {
         ...state,
         developers: action.payload,
+      };
+
+    case FAV_DEVELOPER:
+      return {
+        ...state,
+        favorites: state.favorites.concat(action.payload),
+      };
+
+    case REMOVE_FAV_DEVELOPER:
+      return {
+        ...state,
+        favorites: state.favorites.filter(
+          (dev) => dev.cust_id !== action.payload
+        ),
       };
     default:
       return state;
