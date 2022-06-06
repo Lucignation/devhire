@@ -22,14 +22,11 @@ type props = {
 const DeveloperCard: FC<props> = ({ developer, removeFav, FavDev }) => {
   const [isFav, setIsFav] = useState<boolean>(false);
 
-  const { display_name, currency_name, avatar, service_photo, starting_from } =
-    developer;
+  const { display_name, avatar, service_photo, starting_from } = developer;
 
   const data = useSelector((store: Store) => store.resources);
 
   const { favorites } = data;
-
-  //   console.log(favorites);
 
   //fav a developer
   const handleFav = (developer: IDeveloper) => {
@@ -37,11 +34,9 @@ const DeveloperCard: FC<props> = ({ developer, removeFav, FavDev }) => {
     if (
       favorites.some((dev: IDeveloper) => dev.cust_id === developer.cust_id)
     ) {
-      removeFav(developer);
-      //   showToast(`${developer.display_name} is removed`);
+      removeFav(developer); // remove a dev from favorite list
     } else {
-      FavDev(developer);
-      //   showToast(`${developer.display_name} is faved`);
+      FavDev(developer); //fav a developer
     }
   };
 

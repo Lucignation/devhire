@@ -1,11 +1,14 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { Store } from '../../store/types';
 
+//import from  folders
 import DeveloperCard from '../../components/developer-card/developer-card.component';
+import { Store } from '../../store/types';
 
 //import CSS styles
 import './favorite.page.css';
+
+//import interfaces
 import { IDeveloper } from '../../common/interfaces/developers.interface';
 
 const Favorite: FC = () => {

@@ -18,6 +18,7 @@ const Sidebar: FC = () => {
       <div className='logo'>
         <img src={Logo} alt='logo' />
       </div>
+
       <nav>
         <ul className='nav-link-lists'>
           <li
@@ -28,12 +29,14 @@ const Sidebar: FC = () => {
             }
           >
             <div className={location.pathname === '/' ? 'stripe' : ''}></div>
+
             <div className='nav-icon'>
               <img
                 src={location.pathname === '/' ? Search : InActiveSearch}
                 alt='search'
               />
             </div>
+
             <NavLink to='/'>Home</NavLink>
           </li>
 
@@ -47,12 +50,14 @@ const Sidebar: FC = () => {
             <div
               className={location.pathname === '/favorites' ? 'stripe' : ''}
             ></div>
+
             <div className='nav-icon'>
               <img
                 src={location.pathname === '/favorites' ? ActiveFav : Fav}
                 alt='favorite'
               />
             </div>
+
             <NavLink to='/favorites'>Favorites</NavLink>
           </li>
         </ul>

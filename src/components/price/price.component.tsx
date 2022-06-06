@@ -1,7 +1,6 @@
-import { FC, useState, useCallback } from 'react';
+import { FC } from 'react';
 
 import { useSelector } from 'react-redux';
-import { ICurrency } from '../../common/interfaces/currency.interface';
 import { Store } from '../../store/types';
 
 type props = {
@@ -13,16 +12,9 @@ const Price: FC<props> = ({ priceTag }) => {
 
   const { currency } = data;
 
-  useCallback(() => {
-    console.log(currency);
-  }, [currency]);
-
-  console.log(currency);
-
+  //currency conversion
   const currencyConversion =
     parseFloat(priceTag) / parseFloat(currency[0]?.divider);
-
-  console.log(currencyConversion);
 
   return (
     <p className='card-dev-price'>

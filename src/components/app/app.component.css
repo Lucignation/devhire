@@ -1,5 +1,5 @@
 .app {
-  background-color: #e5e5e5;
+  height: auto;
 }
 
 .app_division {
@@ -9,6 +9,9 @@
 }
 
 @media (max-width: 912px) {
+  .app {
+    height: inherit !important;
+  }
   .app_division {
     grid-template-columns: 100%;
     margin-bottom: 15px;

@@ -27,12 +27,25 @@
 
 @media (max-width: 912px) {
   .currency-component {
-    margin-left: 200px;
+    margin-left: 50% !important;
+    width: 177px;
+    margin-top: 0%;
   }
+
+  /* .currency-component img {
+    height: 15px;
+    width: 15px;
+    margin-left: 13px;
+    margin-top: 12px;
+    border-radius: 0px;
+  } */
 }
 
 @media (max-width: 540px) {
   .currency-component {
+    margin-left: 65% !important;
+    width: 117px;
+    margin-top: -14%;
     margin-left: 130px;
   }
 }

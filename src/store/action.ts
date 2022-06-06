@@ -78,10 +78,9 @@ export const getCurrencies =
     });
   };
 
-//get a currency
+//set a currency
 export const setCurrency =
   (currency: ICurrency): ThunkAction<void, Store, unknown, Action<ICurrency>> =>
   async (dispatch: Dispatch) => {
-    console.log(currency);
     dispatch({ type: SET_CURRENCY, payload: currency });
   };

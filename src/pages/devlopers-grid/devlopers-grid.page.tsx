@@ -13,13 +13,14 @@ type props = {
 const DevelopersGrid: FC<props> = ({ getDevelopers }) => {
   const data = useSelector((store: Store) => store.resources);
 
-  //   console.log(data);
   useEffect(() => {
     const fetchRequest = async () => {
-      await getDevelopers();
+      await getDevelopers(); //request to fetch all developers
     };
 
     fetchRequest();
+
+    // eslint-disable-next-line
   }, []);
 
   const users = data.developers.map((user: any, index: number) => (

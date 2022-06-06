@@ -16,7 +16,7 @@
 
 @media (max-width: 912px) {
   .favorite {
-    height: auto;
+    height: 100%;
     padding-left: 5px;
     padding-top: 114px;
   }
