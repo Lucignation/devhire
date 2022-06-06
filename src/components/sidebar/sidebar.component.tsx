@@ -24,8 +24,8 @@ const Sidebar: FC = () => {
           <li
             className={
               location.pathname === '/'
-                ? 'active-nav-link-item nav-link-item'
-                : 'nav-link-item'
+                ? 'active-nav-link-item nav-link-item home-nav'
+                : 'nav-link-item home-nav'
             }
           >
             <div className={location.pathname === '/' ? 'stripe' : ''}></div>
@@ -43,8 +43,8 @@ const Sidebar: FC = () => {
           <li
             className={
               location.pathname === '/favorites'
-                ? 'active-nav-link-item nav-link-item'
-                : 'nav-link-item'
+                ? 'active-nav-link-item nav-link-item fav-nav'
+                : 'nav-link-item fav-nav'
             }
           >
             <div

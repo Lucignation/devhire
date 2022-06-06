@@ -63,18 +63,37 @@ header {
   .stripe {
     display: none;
   }
+
+  header {
+    padding-top: 30px;
+    padding-right: 0px !important;
+    margin-left: 0 !important;
+  }
   .nav-link-lists {
     display: grid;
     grid-template-columns: 50% 50%;
+    width: 100%;
+    padding-left: 0px;
+  }
+
+  .active-nav-link-item .nav-icon {
+    padding: 4px !important;
+  }
+
+  .home-nav {
+    /* background-color: pink; */
+  }
+
+  .fav-nav {
+    /* background-color: blue; */
   }
 
   .nav-link-item {
-    /* border: 1px solid red; */
     font-size: 24px;
-    margin-left: 3%;
+    margin-left: 3% !important;
     display: grid;
-    grid-template-columns: 20% 75%;
-    grid-gap: 5%;
+    grid-template-columns: 30% 65%;
+    grid-gap: 2%;
   }
 
   .active-nav-link-item .nav-icon img {
@@ -116,9 +135,5 @@ header {
     /* margin-left: -50%; */
 
     padding-left: 0px;
-  }
-
-  .nav-link-item:nth-child(even) {
-    margin-right: 143px;
   }
 }
